@@ -89,6 +89,10 @@ namespace NineCafeApi
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseCors("AllowFrontend");
+
 
             // Seed Database on startup
             using (var scope = app.Services.CreateScope())
