@@ -10,7 +10,7 @@ services:
       - db
 
   db:
-    image: mcr.microsoft.com/devcontainers/dotnet:1-10.0
+    image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "Dev_Passw0rd!2026"
