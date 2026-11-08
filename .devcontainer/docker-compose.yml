@@ -1,0 +1,16 @@
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/dotnet:1-10.0
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=NineCafeDb;User Id=sa;Password=Dev_Passw0rd!2026;TrustServerCertificate=true;MultipleActiveResultSets=true"
+    depends_on:
+      - db
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Dev_Passw0rd!2026"
