@@ -6,10 +6,18 @@ using Microsoft.IdentityModel.Tokens;
 using NineCafeApi.Authorization;
 using NineCafeApi.Data;
 using NineCafeApi.Services.Auth;
+using NineCafeApi.Services.AuditLogs;
+using NineCafeApi.Services.Dashboard;
 using NineCafeApi.Services.Modules;
 using NineCafeApi.Services.Permissions;
+using NineCafeApi.Services.Prices;
+using NineCafeApi.Services.Reports;
 using NineCafeApi.Services.Roles;
+using NineCafeApi.Services.Suppliers;
 using NineCafeApi.Services.Users;
+using NineCafeApi.Services.Debts;
+using NineCafeApi.Services.Expenses;
+using NineCafeApi.Services.Withdrawals;
 using Scalar.AspNetCore;
 using System.Text;
 
@@ -22,6 +30,16 @@ namespace NineCafeApi
             var builder = WebApplication.CreateBuilder(args);
             // 1. Add Controllers
             builder.Services.AddControllers();
+            // Enable CORS for Frontend
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
             // 2. Register DbContext
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -76,6 +94,16 @@ namespace NineCafeApi
             builder.Services.AddScoped<IPermissionService, PermissionService>();
             builder.Services.AddScoped<IRoleService, RoleService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPriceService, PriceService>();
+            builder.Services.AddScoped<IWithdrawalService, WithdrawalService>();
+            builder.Services.AddScoped<IDebtService, DebtService>();
+            builder.Services.AddScoped<IExpenseService, ExpenseService>();
+            builder.Services.AddScoped<IDashboardService, DashboardService>();
+            builder.Services.AddScoped<IReportService, ReportService>();
+            builder.Services.AddScoped<ISupplierService, SupplierService>();
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddScoped<IAuditLogService, AuditLogService>();
+
             // 7. OpenAPI & Scalar Documentation
             builder.Services.AddOpenApi();
             var app = builder.Build();
@@ -86,13 +114,10 @@ namespace NineCafeApi
                 app.MapScalarApiReference();
             }
             app.UseHttpsRedirection();
+            app.UseCors("AllowFrontend");
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-            app.UseCors("AllowFrontend");
-
 
             // Seed Database on startup
             using (var scope = app.Services.CreateScope())
