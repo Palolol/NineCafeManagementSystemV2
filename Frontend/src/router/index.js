@@ -5,8 +5,16 @@ import AppShell from '../layouts/AppShell.vue'
 
 const built = {
   '/dashboard': () => import('../views/DashboardView.vue'),
+  '/debts': () => import('../views/DebtsView.vue'),
+  '/prices': () => import('../views/PricesView.vue'),
+  '/expenses': () => import('../views/ExpensesView.vue'),
+  '/suppliers': () => import('../views/SuppliersView.vue'),
+  '/reports': () => import('../views/ReportsView.vue'),
   '/users': () => import('../views/UsersView.vue'),
+  '/roles': () => import('../views/RolesView.vue'),
+  '/permissions': () => import('../views/PermissionsView.vue'),
   '/modules': () => import('../views/ModulesView.vue'),
+  '/audit-logs': () => import('../views/AuditLogsView.vue'),
 }
 
 const pages = navItems.map((n) => ({
