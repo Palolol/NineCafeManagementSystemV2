@@ -3,8 +3,22 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "upgradePackages": "false"
+    },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "version": "latest",
+      "enableNonRootDocker": "true"
+    }
+  },
   "customizations": {
-    "vscode": { "extensions": ["ms-dotnettools.csdevkit"] }
+    "vscode": { 
+      "extensions": [
+        "ms-dotnettools.csdevkit"
+      ] 
+    }
   },
   "forwardPorts": [5256],
   "portsAttributes": {
