@@ -10,5 +10,5 @@
   "portsAttributes": {
     "5256": { "label": "NineCafe API" }
   },
-  "postCreateCommand": "bash .devcontainer/setup.sh"
+  "postCreateCommand": "cd Frontend && npm install"
 }
