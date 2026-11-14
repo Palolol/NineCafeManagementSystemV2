@@ -10,5 +10,5 @@
   "portsAttributes": {
     "5256": { "label": "NineCafe API" }
   },
-  "postCreateCommand": "dotnet tool install --global dotnet-ef"
+  "postCreateCommand": "dotnet tool install --global dotnet-ef --version 10.0.0-rc.2.25502.107; curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash && . ~/.nvm/nvm.sh && nvm install --lts && (cd Frontend && npm install)"
 }
