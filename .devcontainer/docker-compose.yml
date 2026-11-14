@@ -14,3 +14,9 @@ services:
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "Dev_Passw0rd!2026"
+    volumes:
+      - ../db-backup:/backup:ro
+      - sqldata:/var/opt/mssql
+
+volumes:
+  sqldata:
