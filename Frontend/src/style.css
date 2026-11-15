@@ -4,7 +4,7 @@
   --danger: #fa896b; --light-danger: #ffede9;
   --warning: #ffae1f; --secondary: #707a82; --light-secondary: #e7ecf0;
   --dark: #111c2d; --bg: #f5f8fb; --text: #5a6a85; --heading: #2a3547; --border: #ebf1f6;
-  --sidebar-w: 260px; --header-h: 70px; --radius: 12px;
+  --radius: 12px;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 * { box-sizing: border-box; }
@@ -50,27 +50,6 @@ td.actions { text-align: right; white-space: nowrap; display: flex; gap: 6px; ju
 .modal { background: #fff; border-radius: var(--radius); width: 100%; max-width: 460px; max-height: 90vh; overflow: auto; padding: 22px; }
 .modal h3 { margin-bottom: 4px; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
-
-/* shell */
-.shell { display: flex; min-height: 100vh; }
-.sidebar { width: var(--sidebar-w); background: #fff; border-right: 1px solid var(--border); padding: 16px; position: fixed; inset: 0 auto 0 0; overflow-y: auto; z-index: 20; transition: transform .2s; }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; color: var(--heading); padding: 6px 8px 18px; }
-.brand img { width: 34px; height: 34px; }
-.nav a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; color: var(--text); font-weight: 600; margin-bottom: 2px; }
-.nav a:hover { background: var(--bg); }
-.nav a.router-link-active { background: var(--light-primary); color: var(--primary); }
-.main { flex: 1; margin-left: var(--sidebar-w); min-width: 0; }
-.topbar { height: var(--header-h); background: #fff; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 10; }
-.topbar .who { display: flex; align-items: center; gap: 12px; }
-.content { padding: 24px; }
-.menu-btn { display: none; }
-@media (max-width: 900px) {
-  .sidebar { transform: translateX(-100%); }
-  .sidebar.open { transform: none; box-shadow: 0 0 40px rgba(0,0,0,.2); }
-  .main { margin-left: 0; }
-  .menu-btn { display: inline-block; margin-right: 10px; }
-  .content { padding: 14px; }
-}
 
 /* login */
 .login-page { min-height: 100vh; display: grid; place-items: center; padding: 16px; }
