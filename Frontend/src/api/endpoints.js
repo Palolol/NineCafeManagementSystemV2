@@ -19,6 +19,7 @@ export const dashboardApi = {
   updateSale: (id, quantity) => api.put(`dashboard/sales/${id}`, { quantity }),
   deleteSale: (id) => api.delete(`dashboard/sales/${id}`),
   addWithdrawal: (dto) => api.post('dashboard/withdrawals', dto),
+  updateWithdrawal: (id, dto) => api.put(`dashboard/withdrawals/${id}`, dto),
   deleteWithdrawal: (id) => api.delete(`dashboard/withdrawals/${id}`),
 }
 
