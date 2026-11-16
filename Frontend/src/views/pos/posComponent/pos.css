@@ -1,0 +1,280 @@
+/* ── POS layout – closer to the original WPF CashierWindow ── */
+.pos-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 16px;
+  height: calc(100vh - 64px - 36px);
+  min-height: 560px;
+}
+
+@media (max-width: 960px) {
+  .pos-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+/* ── Left: categories + items ───────────────────────────── */
+.pos-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.pos-categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pos-cat-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--heading);
+  border-radius: 20px;
+  padding: 7px 16px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.pos-cat-btn:hover {
+  background: var(--light-primary);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.pos-cat-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.pos-items {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 10px;
+  padding-bottom: 8px;
+  align-content: start;
+}
+
+.pos-item-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 10px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.12s, box-shadow 0.12s, transform 0.1s;
+  user-select: none;
+}
+.pos-item-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 133, 219, 0.12);
+  transform: translateY(-1px);
+}
+.pos-item-card:active {
+  transform: translateY(0);
+}
+.pos-item-emoji {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.pos-item-name {
+  font-weight: 600;
+  color: var(--heading);
+  font-size: 13px;
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+.pos-item-price {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ── Right: Bill panel (table + payment) ────────────────── */
+.pos-bill {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pos-bill-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pos-bill-header h3 {
+  font-size: 15px;
+  margin: 0;
+}
+.pos-bill-count {
+  background: var(--light-primary);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 12px;
+}
+
+.pos-bill-table-wrap {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 120px;
+}
+
+.pos-bill-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.pos-bill-table th {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--secondary);
+}
+.pos-bill-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f0f4f8;
+  vertical-align: middle;
+}
+.pos-bill-table .col-no   { width: 28px; color: var(--secondary); }
+.pos-bill-table .col-qty  { width: 90px; }
+.pos-bill-table .col-price,
+.pos-bill-table .col-total { text-align: right; white-space: nowrap; }
+.pos-bill-table .col-total { font-weight: 700; color: var(--heading); }
+
+.pos-qty-ctrl {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.pos-qty-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--heading);
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  padding: 0;
+}
+.pos-qty-btn:hover { background: var(--light-secondary); }
+.pos-qty-val {
+  min-width: 18px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.pos-bill-empty {
+  text-align: center;
+  padding: 36px 16px;
+  color: var(--secondary);
+  font-size: 13px;
+}
+
+/* Payment section (bottom of bill panel) */
+.pos-payment {
+  border-top: 1px solid var(--border);
+  padding: 12px 16px 14px;
+  background: #fafbfc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pos-pay-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+.pos-pay-row label {
+  margin: 0;
+  font-weight: 600;
+  color: var(--heading);
+  font-size: 13px;
+}
+.pos-pay-row input {
+  width: 120px;
+  text-align: right;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.pos-pay-totals {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+.pos-pay-totals .grand {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--heading);
+  margin-top: 2px;
+}
+.pos-pay-totals .balance {
+  font-weight: 700;
+}
+.pos-pay-totals .balance.ok   { color: #0b9e82; }
+.pos-pay-totals .balance.owed { color: #c8553a; }
+
+.pos-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 6px;
+}
+.pos-actions .btn-full {
+  grid-column: 1 / -1;
+}
+.pos-actions .btn {
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+/* ── Checkout / success modal ───────────────────────────── */
+.checkout-summary {
+  margin: 12px 0 6px;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.checkout-summary .pos-pay-row {
+  margin-bottom: 3px;
+}
+.checkout-success {
+  text-align: center;
+  padding: 8px 0 4px;
+}
+.checkout-success .bill-id {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 16px;
+  margin: 8px 0 4px;
+  letter-spacing: 0.02em;
+}

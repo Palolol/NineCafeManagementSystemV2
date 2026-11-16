@@ -11,4 +11,5 @@ export const navItems = [
   { label: 'Permissions', to: '/permissions', perm: 'permission.read', icon: '🔑', legacy: 'permissions.html' },
   { label: 'Modules',     to: '/modules',     perm: 'module.read',     icon: '🧩' },
   { label: 'Audit logs',  to: '/audit-logs',  perm: 'audit.read',      icon: '📜', legacy: 'audit-logs.html' },
+  { label: 'POS', to: '/pos', perm: 'bill.create', icon: '🛒' },
 ]
