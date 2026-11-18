@@ -15,7 +15,6 @@ const built = {
   '/permissions': () => import('../views/PermissionsView.vue'),
   '/modules': () => import('../views/ModulesView.vue'),
   '/audit-logs': () => import('../views/AuditLogsView.vue'),
-  '/pos': () => import('../views/pos/PosView.vue'),
 }
 
 const pages = navItems.map((n) => ({
